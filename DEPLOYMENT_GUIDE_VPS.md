@@ -12,7 +12,7 @@ The VPS may host other applications. Keep MFL isolated by using its own folder, 
 - Host port: `127.0.0.1:8180`
 - Public entry: host Nginx reverse proxy
 - Database: Docker volume managed by the MFL compose project
-- GitHub repo: `https://github.com/Vumbi2018/mfl`
+- GitHub repo: `https://github.com/LawrenceMukombo/mfl`
 
 ## Commands That Must Not Be Used For Normal Updates
 
@@ -53,7 +53,7 @@ cd /opt/mfl
 Clone the repo if `/opt/mfl` is empty:
 
 ```bash
-git clone https://github.com/Vumbi2018/mfl.git .
+git clone https://github.com/LawrenceMukombo/mfl.git .
 ```
 
 Create the production `.env` file:
