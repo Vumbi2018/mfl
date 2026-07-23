@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: mfl-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mfl-db
+          property: connectionString
+      - key: CLIENT_URL
+        fromService:
+          type: web
+          name: mfl-frontend
+          property: url
+
+  - type: web
+    name: mfl-frontend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run serve -- --port $PORT --host 0.0.0.0 --single
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: mfl-backend
+          property: url
+
+databases:
+  - name: mfl-db
+    plan: free
+    databaseName: mfl_db
+    user: mfl_user
+

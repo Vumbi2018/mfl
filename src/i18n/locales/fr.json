@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "dashboard": "Carte Interactive",
+    "facilities": "Registre des Établissements",
+    "facilityEditor": "Ajouter / Modifier un Établissement",
+    "workflows": "Console de Flux de Travail",
+    "analytics": "Analyses et Rapports",
+    "dataDictionary": "Dictionnaire de Données",
+    "auditLogs": "Journaux d'Audit",
+    "userRoles": "Utilisateurs et Rôles",
+    "systemSettings": "Paramètres du Système",
+    "adminConsole": "Console d'Administration",
+    "fieldApp": "Application Mobile de Terrain"
+  },
+  "common": {
+    "search": "Rechercher...",
+    "filter": "Filtrer",
+    "export": "Exporter",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "actions": "Actions",
+    "status": "Statut",
+    "loading": "Chargement...",
+    "noData": "Aucun enregistrement trouvé.",
+    "tenant": "Pays / Entité",
+    "language": "Langue"
+  },
+  "dictionary": {
+    "title": "Dictionnaire de Données du Registre des Établissements de Santé",
+    "subtitle": "Définitions de métadonnées faisant autorité pour tous les éléments de données des domaines de signature et de service selon les normes OMS/UNICEF GHFD SubWG RMR.",
+    "code": "Code Élément",
+    "name": "Nom du Champ",
+    "category": "Catégorie de Domaine",
+    "dataType": "Type de Données",
+    "criticality": "Niveau de Criticité RMR",
+    "requirement": "Code d'Exigence",
+    "required": "Obligatoire",
+    "unique": "Unique",
+    "exportExcel": "Exporter le Dictionnaire de Données (Excel)"
+  },
+  "sublists": {
+    "title": "Sous-Listes Enregistrées",
+    "create": "Enregistrer la Sous-Liste Filtrée",
+    "listName": "Nom de la Sous-Liste",
+    "description": "Description",
+    "version": "Étiquette de Version",
+    "public": "Rendre Public",
+    "selectSublist": "Filtrer par Sous-Liste Enregistrée"
+  },
+  "notifications": {
+    "title": "Notifications et Alertes",
+    "markAllRead": "Tout marquer comme lu",
+    "empty": "Aucune nouvelle notification",
+    "unread": "non lu(s)"
+  }
+}

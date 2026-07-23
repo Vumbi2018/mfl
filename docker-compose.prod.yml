@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgis/postgis:15-3.3-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mfl_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Mount the backup to auto-seed the DB on first start
+      - ./mfl_prod_db.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - DB_NAME=mfl_db
+      - CLIENT_URL=https://mfl.lamtoninvestments.com
+      # Ensure other keys like VITE_OPENAI_API_KEY etc are added here if used by backend
+    depends_on:
+      - postgres
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8081:80"
+    volumes:
+      # Mount the build folder to Nginx root
+      - ./build:/usr/share/nginx/html
+      # Mount config
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

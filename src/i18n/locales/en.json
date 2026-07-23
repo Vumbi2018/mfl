@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "dashboard": "Interactive Map",
+    "facilities": "Facilities Registry",
+    "facilityEditor": "Add / Edit Facility",
+    "workflows": "Workflow Console",
+    "analytics": "Analytics & Reports",
+    "dataDictionary": "Data Dictionary",
+    "auditLogs": "Audit Logs",
+    "userRoles": "Users & Roles",
+    "systemSettings": "System Settings",
+    "adminConsole": "Admin Console",
+    "fieldApp": "Mobile Field App"
+  },
+  "common": {
+    "search": "Search...",
+    "filter": "Filter",
+    "export": "Export",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "actions": "Actions",
+    "status": "Status",
+    "loading": "Loading...",
+    "noData": "No records found.",
+    "tenant": "Country / Tenant",
+    "language": "Language"
+  },
+  "dictionary": {
+    "title": "Health Facility Registry Data Dictionary",
+    "subtitle": "Authoritative metadata definitions for all signature and service domain data elements per WHO/UNICEF GHFD SubWG RMR standards.",
+    "code": "Element Code",
+    "name": "Field Name",
+    "category": "Domain Category",
+    "dataType": "Data Type",
+    "criticality": "RMR Criticality",
+    "requirement": "Requirement Code",
+    "required": "Required",
+    "unique": "Unique",
+    "exportExcel": "Export Data Dictionary (Excel)"
+  },
+  "sublists": {
+    "title": "Saved Sub-Lists",
+    "create": "Save Filtered Sub-List",
+    "listName": "Sub-List Name",
+    "description": "Description",
+    "version": "Version Label",
+    "public": "Make Public",
+    "selectSublist": "Filter by Saved Sub-List"
+  },
+  "notifications": {
+    "title": "Notifications & Workflow Alerts",
+    "markAllRead": "Mark all as read",
+    "empty": "No new notifications",
+    "unread": "unread"
+  }
+}

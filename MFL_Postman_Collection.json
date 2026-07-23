@@ -1,0 +1,153 @@
+{
+    "info": {
+        "_postman_id": "d8e3b2a1-5f9c-4b3d-8e1f-2a4c6d8e0f12",
+        "name": "MFL Public API",
+        "description": "Public endpoints for the National Health Facility Registry",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1a. Get All Facilities (Full)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/facilities/public",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "facilities",
+                        "public"
+                    ]
+                },
+                "description": "Retrieves the complete list of facilities including Region data."
+            },
+            "response": []
+        },
+        {
+            "name": "1b. Get All Facilities (Omit Region)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/facilities/public/no-region",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "facilities",
+                        "public",
+                        "no-region"
+                    ]
+                },
+                "description": "Retrieves the complete list of facilities, OMITTING region data (only Province/District)."
+            },
+            "response": []
+        },
+        {
+            "name": "2a. Get Location Hierarchy (Full)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/facilities/locations",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "facilities",
+                        "locations"
+                    ]
+                },
+                "description": "Retrieves hierarchy starting at Region -> Province -> District."
+            },
+            "response": []
+        },
+        {
+            "name": "2b. Get Location Hierarchy (Omit Region)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/facilities/locations/no-region",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "facilities",
+                        "locations",
+                        "no-region"
+                    ]
+                },
+                "description": "Retrieves flattened hierarchy starting at Province -> District (skips Region)."
+            },
+            "response": []
+        },
+        {
+            "name": "3. Get Facility Types",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/facilities/types",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "facilities",
+                        "types"
+                    ]
+                },
+                "description": "Retrieves the list of distinct facility types."
+            },
+            "response": []
+        },
+        {
+            "name": "4. Get All Facilities (FHIR Standard)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/fhir/Location",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "fhir",
+                        "Location"
+                    ]
+                },
+                "description": "Retrieves all facilities as a standard HL7 FHIR Location Bundle."
+            },
+            "response": []
+        },
+        {
+            "name": "5. Get Single Facility (FHIR Standard)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/fhir/Location/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "fhir",
+                        "Location",
+                        "1"
+                    ]
+                },
+                "description": "Retrieves a single facility as a standard HL7 FHIR Location Resource."
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:5001/api",
+            "type": "string"
+        }
+    ]
+}
