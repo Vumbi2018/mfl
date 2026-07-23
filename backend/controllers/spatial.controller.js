@@ -3,7 +3,7 @@ if (typeof self === 'undefined') {
 }
 
 const pool = require('../db');
-const shp = require('shpjs');
+
 const fs = require('fs');
 
 
