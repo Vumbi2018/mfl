@@ -15,6 +15,7 @@ import api from '../../utils/api';
 const FacilitiesContent = () => {
     const { isCollapsed } = useSidebar();
     const navigate = useNavigate();
+    const isLoggedIn = !!localStorage.getItem('token');
     const [searchParams, setSearchParams] = useSearchParams(); // Hook for URL params
     // State for ALL data
     const [allFacilities, setAllFacilities] = useState([]);
@@ -528,7 +529,7 @@ const FacilitiesContent = () => {
                                                 </div>
                                             </th>
                                         ))}
-                                        <th className="sticky top-0 z-20 bg-slate-50 px-4 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-right shadow-sm whitespace-nowrap">Actions</th>
+                                        {isLoggedIn && <th className="sticky top-0 z-20 bg-slate-50 px-4 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-right shadow-sm whitespace-nowrap">Actions</th>}
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
@@ -540,8 +541,8 @@ const FacilitiesContent = () => {
                                         facilities.map(facility => (
                                                 <tr 
                                                     key={facility.id} 
-                                                    className="hover:bg-indigo-50/50 transition-colors group cursor-pointer"
-                                                    onClick={() => navigate(`/facilities/${facility.id}`)}
+                                                    className={`hover:bg-indigo-50/50 transition-colors group ${isLoggedIn ? 'cursor-pointer' : ''}`}
+                                                    onClick={isLoggedIn ? () => navigate(`/facilities/${facility.id}`) : undefined}
                                                 >
                                                     {hasRegions && <td className="px-4 py-3 text-sm text-slate-600 font-medium whitespace-nowrap">{facility.region || '-'}</td>}
                                                     <td className="px-4 py-3 text-sm text-slate-600 font-medium whitespace-nowrap">{facility.province || '-'}</td>
@@ -582,18 +583,20 @@ const FacilitiesContent = () => {
                                                             {facility.operational_status || 'Unknown'}
                                                         </span>
                                                     </td>
-                                                    <td className="px-4 py-3 text-sm text-right whitespace-nowrap">
-                                                        <button
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                navigate(`/facilities/${facility.id}`);
-                                                            }}
-                                                            className="text-slate-400 hover:text-indigo-600 font-medium transition-colors hover:bg-indigo-50 p-1.5 rounded-full"
-                                                            title="Edit Facility"
-                                                        >
-                                                            Edit
-                                                        </button>
-                                                    </td>
+                                                    {isLoggedIn && (
+                                                        <td className="px-4 py-3 text-sm text-right whitespace-nowrap">
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    navigate(`/facilities/${facility.id}`);
+                                                                }}
+                                                                className="text-slate-400 hover:text-indigo-600 font-medium transition-colors hover:bg-indigo-50 p-1.5 rounded-full"
+                                                                title="Edit Facility"
+                                                            >
+                                                                Edit
+                                                            </button>
+                                                        </td>
+                                                    )}
                                                 </tr>
                                         ))
                                     )}

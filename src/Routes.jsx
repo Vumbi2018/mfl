@@ -37,11 +37,7 @@ const Routes = () => {
           <Route path="/verify/:id" element={<PublicVerification />} />
 
           {/* Protected Routes */}
-          <Route path="/" element={
-            <ProtectedRoute>
-              <InteractiveMapDashboard />
-            </ProtectedRoute>
-          } />
+          <Route path="/" element={<InteractiveMapDashboard />} />
           <Route path="/admin-hierarchy" element={
             <ProtectedRoute>
               <AdminHierarchyPage />
@@ -70,11 +66,7 @@ const Routes = () => {
               <FacilityEditorForm />
             </ProtectedRoute>
           } />
-          <Route path="/interactive-map-dashboard" element={
-            <ProtectedRoute>
-              <InteractiveMapDashboard />
-            </ProtectedRoute>
-          } />
+          <Route path="/interactive-map-dashboard" element={<InteractiveMapDashboard />} />
           <Route path="/user-role-management" element={
             <ProtectedRoute>
               <UserRoleManagement />
@@ -110,11 +102,7 @@ const Routes = () => {
               <TechnicianMobileWorkspace />
             </ProtectedRoute>
           } />
-          <Route path="/facilities" element={
-            <ProtectedRoute>
-              <FacilitiesList />
-            </ProtectedRoute>
-          } />
+          <Route path="/facilities" element={<FacilitiesList />} />
           <Route path="/facilities/:id" element={
             <ProtectedRoute>
               <FacilityEditorForm />

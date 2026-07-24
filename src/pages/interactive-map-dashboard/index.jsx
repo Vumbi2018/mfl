@@ -21,6 +21,7 @@ import { saveAs } from 'file-saver';
 const DashboardContent = () => {
   const navigate = useNavigate();
   const { isCollapsed } = useSidebar();
+  const isLoggedIn = !!localStorage.getItem('token');
   const [selectedFacility, setSelectedFacility] = useState(null);
   const [filters, setFilters] = useState({
     type: 'all', status: 'all', region_id: 'all', province_id: 'all', district_id: 'all',
@@ -111,7 +112,7 @@ const DashboardContent = () => {
             <div className="flex items-center gap-3">
               <IntegrationHealthMonitor /><WorkflowStatusIndicator isFixed={false} />
               <Button variant="outline" iconName="Download" iconPosition="left" onClick={() => setShowExportModal(true)}>Export</Button>
-              <Button variant="default" iconName="Plus" iconPosition="left" onClick={() => navigate('/facility-editor-form')}>Add Facility</Button>
+              {isLoggedIn && <Button variant="default" iconName="Plus" iconPosition="left" onClick={() => navigate('/facility-editor-form')}>Add Facility</Button>}
             </div>
           </div>
           <SearchBar onSearch={(q) => setFilters(p => ({...p, search_query: q}))} />
@@ -130,7 +131,7 @@ const DashboardContent = () => {
               mapFacilities={filteredMapFacilities} 
               stats={stats} 
               loading={loading} 
-              onEditFacility={() => navigate(`/facilities/${selectedFacility.id}`)}
+              onEditFacility={isLoggedIn ? () => navigate(`/facilities/${selectedFacility.id}`) : undefined}
             />
           </div>
         </div>

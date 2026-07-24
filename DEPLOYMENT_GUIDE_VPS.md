@@ -1,12 +1,12 @@
 # Hostinger VPS Deployment Guide - Zambia MFL
 
-This guide deploys and updates the Zambia Master Facility List at `mfl.lamtoninvestiments.com` on the Hostinger VPS at `72.60.233.213`.
+This guide deploys and updates the Zambia Master Facility List at `mfl.lamtoninvestments.com` on the Hostinger VPS at `72.60.233.213`.
 
 The VPS may host other applications. Keep MFL isolated by using its own folder, Docker Compose project, host port, Docker volumes, and Nginx server block.
 
 ## Production Shape
 
-- Domain: `mfl.lamtoninvestiments.com`
+- Domain: `mfl.lamtoninvestments.com`
 - DNS A record: `mfl -> 72.60.233.213`
 - App folder: `/opt/mfl` recommended
 - Host port: `127.0.0.1:8180`
@@ -104,7 +104,7 @@ Use this configuration:
 ```nginx
 server {
     listen 80;
-    server_name mfl.lamtoninvestiments.com;
+    server_name mfl.lamtoninvestments.com;
 
     location / {
         proxy_pass http://127.0.0.1:8180;
@@ -128,7 +128,7 @@ systemctl reload nginx
 Add HTTPS:
 
 ```bash
-certbot --nginx -d mfl.lamtoninvestiments.com
+certbot --nginx -d mfl.lamtoninvestments.com
 ```
 
 ## Non-Destructive Update Procedure
@@ -167,7 +167,7 @@ After deployment, verify:
 
 ```bash
 curl -I http://127.0.0.1:8180
-curl -I https://mfl.lamtoninvestiments.com
+curl -I https://mfl.lamtoninvestments.com
 ```
 
 In the browser, check:

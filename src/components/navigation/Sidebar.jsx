@@ -95,6 +95,13 @@ const Sidebar = () => {
 
   const isActive = (path) => location?.pathname === path;
   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const isLoggedIn = !!localStorage.getItem('token');
+  const allowedForGuests = ['/facilities', '/', '/interactive-map-dashboard'];
+
+  const filteredNavigationItems = navigationItems.map(section => ({
+    ...section,
+    items: section.items.filter(item => isLoggedIn || allowedForGuests.includes(item.path))
+  })).filter(section => section.items.length > 0);
 
   return (
     <>
@@ -126,7 +133,7 @@ const Sidebar = () => {
         </div>
 
         <nav className="sidebar-nav scrollbar-thin overflow-y-auto flex-1">
-          {navigationItems.map((section, idx) => (
+          {filteredNavigationItems.map((section, idx) => (
             <div key={idx} className="mb-6">
               {!isCollapsed && <div className="px-4 mb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">{section.label}</div>}
               <div className="flex flex-col gap-1">
@@ -153,11 +160,27 @@ const Sidebar = () => {
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-white truncate">{user.username || 'Administrator'}</div>
-                <div className="text-xs text-slate-400 truncate">{user.email || 'admin@health.gov'}</div>
+                {isLoggedIn ? (
+                  <>
+                    <div className="text-sm font-medium text-white truncate">{user.username || 'Administrator'}</div>
+                    <div className="text-xs text-slate-400 truncate">{user.email || 'admin@health.gov'}</div>
+                  </>
+                ) : (
+                  <div className="text-sm font-medium text-white truncate">Public User</div>
+                )}
               </div>
             )}
-            {!isCollapsed && <button onClick={handleLogout} className="p-1.5 hover:bg-white/10 rounded-md text-slate-400 hover:text-white"><LogOut size={16} /></button>}
+            {!isCollapsed && (
+              isLoggedIn ? (
+                <button onClick={handleLogout} className="p-1.5 hover:bg-white/10 rounded-md text-slate-400 hover:text-white" title="Log Out">
+                  <LogOut size={16} />
+                </button>
+              ) : (
+                <button onClick={() => { closeMobile(); navigate('/login'); }} className="px-3 py-1.5 bg-indigo-500/20 hover:bg-indigo-500/40 rounded-md text-indigo-300 text-xs font-medium transition-colors">
+                  Sign In
+                </button>
+              )
+            )}
           </div>
           <div className={`status-indicator success mb-2 ${isCollapsed ? 'justify-center' : ''}`}>
             <Icon name="Wifi" size={16} />
