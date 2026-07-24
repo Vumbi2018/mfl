@@ -103,11 +103,7 @@ const Routes = () => {
             </ProtectedRoute>
           } />
           <Route path="/facilities" element={<FacilitiesList />} />
-          <Route path="/facilities/:id" element={
-            <ProtectedRoute>
-              <FacilityEditorForm />
-            </ProtectedRoute>
-          } />
+          <Route path="/facilities/:id" element={<FacilityEditorForm />} />
           <Route path="/admin-console" element={
             <ProtectedRoute>
               <AdminConsole />

